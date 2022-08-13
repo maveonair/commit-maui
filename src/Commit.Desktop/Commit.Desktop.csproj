@@ -40,10 +40,4 @@
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 	</ItemGroup>
-	<ItemGroup>
-		<None Remove="Resources\Images\" />
-	</ItemGroup>
-	<ItemGroup>
-		<Folder Include="Resources\Images\" />
-	</ItemGroup>
 </Project>
