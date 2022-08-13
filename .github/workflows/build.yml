@@ -26,7 +26,12 @@ jobs:
           dotnet-version: 6.0.x
 
       - name: Install MAUI workload
-        run: dotnet workload install maui
+        if: matrix.os == 'macOS-latest'
+        run: dotnet workload install maui-maccatalyst
+
+      - name: Install MAUI workload
+        if: matrix.os == 'windows-latest'
+        run: dotnet workload install maui-windows
 
       - name: Restore dependencies
         run: dotnet restore
