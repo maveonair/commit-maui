@@ -15,7 +15,7 @@
 		<ApplicationTitle>Commit.Desktop</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.commit.desktop</ApplicationId>
+		<ApplicationId>com.maveonair.commit.desktop</ApplicationId>
 		<ApplicationIdGuid>D2BA7C5D-01C1-4AA5-8E30-73840477579F</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -26,6 +26,11 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+	</PropertyGroup>
+
+	<PropertyGroup  Condition="'$(TargetFramework)' == 'net6.0-maccatalyst' and '$(Configuration)' == 'Release'">
+			<!-- for Mac Catalyst -->
+			<RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers>
 	</PropertyGroup>
 
 	<ItemGroup>
