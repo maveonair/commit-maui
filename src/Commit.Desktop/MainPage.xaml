@@ -16,26 +16,31 @@
 
        <ScrollView Grid.Row="0"
                    VerticalOptions="FillAndExpand">
-           <Editor  x:Name="message"
+           <Editor x:Name="message"
                    AutoSize="TextChanges"
                    Text="{Binding Message, Mode=TwoWay}" 
                    IsSpellCheckEnabled="True"
-                   FontSize="Large"
+                   FontSize="Medium"
                    FontFamily="JetBrainsMonoRegular" />
         </ScrollView>
 
-       <StackLayout Grid.Row="1"
-                    Orientation="Horizontal"
+       <VerticalStackLayout Grid.Row="1"
+                    HorizontalOptions="Fill"
+                    BackgroundColor="{StaticResource Primary}">
+
+           <HorizontalStackLayout HorizontalOptions="Center"
                     Padding="15"
-                    Spacing="15"
-                    HorizontalOptions="Center">
+                    Spacing="15">
+               <Button Text="Abort"
+                       FontSize="Medium"
+                       Command="{Binding AbortCommand}" />
 
-           <Button Text="Abort" Command="{Binding AbortCommand}" />
+               <Button Text="Commit"
+                       FontSize="Medium"
+                       Command="{Binding CommitCommand}"/>
 
-           <Button Text="Commit" Command="{Binding CommitCommand}"/>
-       </StackLayout>
-
-
+           </HorizontalStackLayout>
+       </VerticalStackLayout>
    </Grid>
 </ContentPage>
 
