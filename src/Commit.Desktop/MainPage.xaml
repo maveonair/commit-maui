@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Commit.Desktop.MainPage"
+             xmlns:vm="using:Commit.Desktop.ViewModels">
+
+    <ContentPage.BindingContext>
+        <vm:MainViewModel />
+    </ContentPage.BindingContext>
+
+   <Grid>
+       <Grid.RowDefinitions>
+           <RowDefinition Height="*" />
+           <RowDefinition Height="Auto" />
+       </Grid.RowDefinitions>
+
+       <ScrollView Grid.Row="0"
+                   VerticalOptions="FillAndExpand">
+           <Editor  x:Name="message"
+                   AutoSize="TextChanges"
+                   Text="{Binding Message, Mode=TwoWay}" 
+                   IsSpellCheckEnabled="True"
+                   FontSize="Large"
+                   FontFamily="JetBrainsMonoRegular" />
+        </ScrollView>
+
+       <StackLayout Grid.Row="1"
+                    Orientation="Horizontal"
+                    Padding="15"
+                    Spacing="15"
+                    HorizontalOptions="Center">
+
+           <Button Text="Abort" Command="{Binding AbortCommand}" />
+
+           <Button Text="Commit" Command="{Binding CommitCommand}"/>
+       </StackLayout>
+
+
+   </Grid>
+</ContentPage>
+
