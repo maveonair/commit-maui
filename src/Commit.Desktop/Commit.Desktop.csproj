@@ -11,9 +11,9 @@
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<!-- Display name -->
-		<ApplicationTitle>Commit.Desktop</ApplicationTitle>
+		<ApplicationTitle>Commit</ApplicationTitle>
 		<!-- App Identifier -->
-		<ApplicationId>com.maveonair.commit.desktop</ApplicationId>
+		<ApplicationId>com.maveonair.commit</ApplicationId>
 		<ApplicationIdGuid>D2BA7C5D-01C1-4AA5-8E30-73840477579F</ApplicationIdGuid>
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
