@@ -4,5 +4,5 @@ Commit is an editor that helps you write better Git commit messages on MacOS and
 
 ## TODO
 
-- [] Improve look & feel including a proper light and dark theme
-- [] Write documentation on how to use Commit
+- [ ] Improve look & feel including a proper light and dark theme
+- [ ] Write documentation on how to use Commit
