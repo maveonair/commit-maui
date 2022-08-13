@@ -49,13 +49,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="ViewModels\" />
-	  <None Remove="CommunityToolkit.Mvvm" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="ViewModels\" />
-	</ItemGroup>
-	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 	</ItemGroup>
 </Project>
