@@ -33,10 +33,12 @@
                     Spacing="15">
                <Button Text="Abort"
                        FontSize="Medium"
+                       Style="{StaticResource ButtonDarkStyle}"
                        Command="{Binding AbortCommand}" />
 
                <Button Text="Commit"
                        FontSize="Medium"
+                       Style="{StaticResource ButtonDarkStyle}"
                        Command="{Binding CommitCommand}"/>
 
            </HorizontalStackLayout>
