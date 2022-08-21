@@ -1,27 +1,35 @@
 ﻿using System;
+using Commit.Desktop.Services;
+using Commit.Desktop.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace Commit.Desktop.ViewModels;
 
-public partial class MainViewModel : ObservableObject
+public partial class MainViewModel : ObservableObject, IRecipient<AppPreferencesChangedMessage>
 {
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(CommitCommand))]
+    [NotifyCanExecuteChangedFor(nameof(CommitCommand))]
     private string message;
+
+    [ObservableProperty]
+    private double fontSize;
+
+    [ObservableProperty]
+    private double editorFontSize;
 
     private string _commitEditMessageFilePath;
     public string CommitEditMessageFilePath => _commitEditMessageFilePath ??= GetCommitEditMessagePath();
 
-    public IRelayCommand AbortCommand { get; }
-
-    public IAsyncRelayCommand CommitCommand { get; }
-
-    public MainViewModel()
+    public MainViewModel(AppPreferences appPreferences)
     {
-        AbortCommand = new RelayCommand(Abort);
-        CommitCommand = new AsyncRelayCommand(Commit, CanCommit);
+        FontSize = appPreferences.FontSize;
+        EditorFontSize = appPreferences.EditorFontSize;
+
         Message = ReadCommitMessage();
+
+        WeakReferenceMessenger.Default.Register(this);
     }
 
     private string GetCommitEditMessagePath()
@@ -35,9 +43,11 @@ public partial class MainViewModel : ObservableObject
         return arg.Contains("COMMIT_EDITMSG") ? arg : string.Empty;
     }
 
-    private void Abort() => App.Current.Quit();
+    [RelayCommand]
+    public static void Abort() => App.Current.Quit();
 
-    private async Task Commit()
+    [RelayCommand(CanExecute = nameof(CanCommit))]
+    public async Task CommitAsync()
     {
         try
         {
@@ -54,6 +64,9 @@ public partial class MainViewModel : ObservableObject
 
     private bool CanCommit() => !string.IsNullOrWhiteSpace(Message) && !string.IsNullOrWhiteSpace(CommitEditMessageFilePath);
 
+    [RelayCommand]
+    public async Task GoToPreferences() => await Shell.Current.GoToAsync(nameof(PreferencesPage), false);
+
     private string ReadCommitMessage()
     {
         if (string.IsNullOrWhiteSpace(CommitEditMessageFilePath))
@@ -63,5 +76,14 @@ public partial class MainViewModel : ObservableObject
 
         var content = File.ReadAllLines(CommitEditMessageFilePath);
         return string.Join("\n", content);
+    }
+
+    public void Receive(AppPreferencesChangedMessage message)
+    {
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            FontSize = message.Value.FontSize;
+            EditorFontSize = message.Value.EditorFontSize;
+        });
     }
 }

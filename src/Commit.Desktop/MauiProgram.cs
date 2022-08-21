@@ -1,4 +1,8 @@
-﻿namespace Commit.Desktop;
+﻿using Commit.Desktop.Services;
+using Commit.Desktop.ViewModels;
+using Commit.Desktop.Views;
+
+namespace Commit.Desktop;
 
 public static class MauiProgram
 {
@@ -11,6 +15,13 @@ public static class MauiProgram
             {
                 fonts.AddFont("JetBrainsMono-Regular.ttf", "JetBrainsMonoRegular");
             });
+
+        builder.Services.AddSingleton<MainPage>();
+        builder.Services.AddSingleton<PreferencesPage>();
+        builder.Services.AddSingleton<AppPreferences>();
+
+        builder.Services.AddTransient<MainViewModel>();
+        builder.Services.AddTransient<PreferencesViewModel>();
 
         return builder.Build();
     }
