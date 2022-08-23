@@ -8,8 +8,8 @@ public class AppPreferences
 
     public AppPreferences()
     {
-        FontSize = Preferences.Default.Get<double>(nameof(FontSize), 14);
-        EditorFontSize = Preferences.Default.Get<double>(nameof(EditorFontSize), 14);
+        FontSize = Preferences.Default.Get(nameof(FontSize), 14.0);
+        EditorFontSize = Preferences.Default.Get(nameof(EditorFontSize), 14.0);
     }
 
     public void Save()

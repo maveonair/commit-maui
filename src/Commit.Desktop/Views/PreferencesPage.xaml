@@ -4,10 +4,8 @@
              xmlns:viewmodels="clr-namespace:Commit.Desktop.ViewModels"
              x:DataType="viewmodels:PreferencesViewModel"
              x:Class="Commit.Desktop.Views.PreferencesPage">
-
     <Grid HorizontalOptions="FillAndExpand"
           Padding="15">
-
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
@@ -79,6 +77,5 @@
                     Text="Close"
                     FontSize="{Binding FontSize}"
                     Command="{Binding GoBackCommand} "/>
-
     </Grid>
 </ContentPage>
